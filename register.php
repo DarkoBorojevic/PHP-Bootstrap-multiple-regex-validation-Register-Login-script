@@ -19,8 +19,9 @@
 	</head>
 
 <body>
-<div class="container">
+
 <?php
+	require_once("connection.php");
 
 	$err = "";
 
@@ -235,6 +236,7 @@
 	}
 
 ?>
+<div class="container">
 <br>
 <form method="post" action="index.php?option=register">
 	<table>
@@ -244,7 +246,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="text" name="username" required>
+				<input class="form-control" type="text" name="username">
 			</td>
 		</tr>
 
@@ -254,7 +256,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="password" name="pass" required>
+				<input class="form-control" type="password" name="pass">
 			</td>
 		</tr>
 
@@ -264,7 +266,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="password" name="repass" required>
+				<input class="form-control" type="password" name="repass">
 			</td>
 		</tr>
 
@@ -274,7 +276,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="text" name="name" required>
+				<input class="form-control" type="text" name="name">
 			</td>
 		</tr>
 
@@ -284,7 +286,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="email" name="email" required>
+				<input class="form-control" type="email" name="email">
 			</td>
 		</tr>
 

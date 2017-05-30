@@ -19,9 +19,10 @@
 	</head>
 
 <body>
-<div class="container">
-<?php
 
+<?php
+	require_once("connection.php");
+	
 	$err = "";
 
 	if (isset($_POST["login"])) {
@@ -77,12 +78,7 @@
 			
 			if ($users->rowCount()==1) {
 
-				$qLog = $users->fetchAll(PDO::FETCH_OBJ);
-
-				foreach ($qLog as $account) {
-					$hash = $account->password;
-					$order = $account->id;
-				}
+				$err .= "";
 
 			}elseif($users->rowCount()>=2) {
 				
@@ -101,7 +97,12 @@
 		/***************************************/
 		if ($err == "") {
 
-			$_SESSION['id'] = $order;
+			$qLog = $users->fetchAll(PDO::FETCH_OBJ);
+
+			foreach ($qLog as $account) {
+				$hash = $account->password;
+				$_SESSION["id"] = $account->id;
+			}
 
 			header("Location:index.php");
 
@@ -120,7 +121,9 @@
 	
 
 ?>
+
 <br>
+<div class="container">
 <form method="post" action="index.php?option=login">
 	<table>
 		<tr>
@@ -129,7 +132,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="text" name="username" required>
+				<input class="form-control" type="text" name="username">
 			</td>
 		</tr>
 
@@ -139,7 +142,7 @@
 			</td>
 
 			<td>
-				<input class="form-control" type="password" name="pass" required>
+				<input class="form-control" type="password" name="pass">
 			</td>
 		</tr>	
 

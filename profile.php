@@ -1,5 +1,7 @@
 <?php
 
+	require_once("connection.php");
+
 	if (isset($_GET['pid'])) {
 		
 		//profile of another registered user
@@ -29,8 +31,8 @@
 			foreach ($fetchProfile as $p) {
 				echo '<div class="col-md-6">';
 				echo '<h3 style="color:#0033cc;">'.$p->username.'</h3>';
-				echo "<strong>".$p->name."</strong><br>";
-				echo "<strong>".$p->email."</strong><br>";
+				echo '<h3 style="color:#000;">'.$p->name.'</h3>';
+				echo '<h3 style="color:#000;">'.$p->email.'</h3>';
 				echo '</div>';
 			}
 			

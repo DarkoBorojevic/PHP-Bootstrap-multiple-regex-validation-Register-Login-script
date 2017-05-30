@@ -24,8 +24,6 @@
 <?php
 session_start();
 
-require_once("connection.php");
-
 if (isset($_SESSION["id"])) {
 
 	echo '
@@ -35,7 +33,7 @@ if (isset($_SESSION["id"])) {
 			<a class="btn btn-primary" href="index.php">home</a>
 			<a class="btn btn-warning" href="index.php?option=userList">users list</a>
 			<a class="btn btn-success" href="index.php?option=profile">profile</a>
-			<a class="btn btn-default" href="index.php?option=logout">logout</a>
+			<a class="btn btn-default" href="logout.php">logout</a>
 		</div>
 		<br>
 		<div class="col-md-12">
@@ -52,8 +50,10 @@ if (isset($_SESSION["id"])) {
 			require_once($file);
 		}else{
 			echo '<br>
+			<div class="col-md-12">
 			<div class="alert alert-danger" role="alert">
 			That page doesn\'t exist! Go back to <a href="index.php">homepage!
+			</div>
 			</div>';
 		}
 	}
@@ -68,27 +68,26 @@ if (isset($_SESSION["id"])) {
 			<a class="btn btn-success" href="index.php?option=register">register</a>
 			<a class="btn btn-default" href="index.php?option=login">login</a>
 		</div>
-		<br>
+		<br><br>
+		<div class="col-md-12">
+		<p class="lead">HOMEPAGE</p>
+		</div>
 	</div>
 	';
 
-	if (isset($_GET['option'])) {
+		if (isset($_GET['option'])) {
 		$file = $_GET['option'].".php";
 		if (file_exists($file)) {
 			require_once($file);
 		}else{
 			echo '<br>
 			<div class="col-md-12">
-			<p style="color:#ff0000;">That page doesn\'t exist! Go back to <a href="index.php">homepage!</p>
+			<div class="alert alert-danger" role="alert">
+			That page doesn\'t exist! Go back to <a href="index.php">homepage!
+			</div>
 			</div>';
 		}
-	}else{
-		echo '<br>
-		<div class="col-md-12">
-		<p class="lead">HOMEPAGE</p>
-		</div>';
 	}
-
 }
 
 ?>

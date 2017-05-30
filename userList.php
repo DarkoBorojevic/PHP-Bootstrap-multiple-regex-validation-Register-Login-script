@@ -1,10 +1,22 @@
 <?php
 
-	$qUser = "SELECT * FROM users";
+	require_once("connection.php");
 
-	$users = $connection->query($qUser);
+	if (isset($_SESSION["id"])) {
 
-	$fUser = $users->fetchAll(PDO::FETCH_OBJ);
+		$qUser = "SELECT * FROM users";
+
+		$users = $connection->query($qUser);
+
+		$fUser = $users->fetchAll(PDO::FETCH_OBJ);
+
+	}else{
+
+		session_unset();
+		session_destroy();
+  		header("Location:index.php");
+
+	}
 
 ?>
 <div class="col-md-4">
@@ -19,23 +31,34 @@
   <tbody>
   	<tr>
   	<?php
-		foreach ($fUser as $user) {
+
+  		if (isset($_SESSION["id"])) {
+  			
+  			foreach ($fUser as $user) {
 			
-			echo '
-			<tr>
-			<td>
-				'.$user->id.'
-			</td>
-			<td>
-				<a href="index.php?option=profile&pid='.$user->id.'">
-				'.$user->username.'
-				</a>
-			</td>
-			<td>
-				'.$user->email.'
-			</td>
-			</tr>';
-		}
+				echo '
+				<tr>
+				<td>
+					'.$user->id.'
+				</td>
+				<td>
+					<a href="index.php?option=profile&pid='.$user->id.'">
+					'.$user->username.'
+					</a>
+				</td>
+				<td>
+					'.$user->email.'
+				</td>
+				</tr>';
+			}
+
+  		}else{
+
+  			session_unset();
+  			session_destroy();
+  			header("Location:index.php");
+  		}
+
 	?>
     </tr>
   </tbody>
