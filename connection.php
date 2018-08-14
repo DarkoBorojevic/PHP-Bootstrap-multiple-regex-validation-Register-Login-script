@@ -3,11 +3,7 @@
 	try {
 
 		
-		$connection = new PDO ('mysql: host=138.201.223.6; dbname=tipo_data','tipo_darko','jnenox7493ksmie836jjklu');
-		
-		/*
-		$connection = new PDO ('mysql: host=127.0.0.1; dbname=tipo_data','root','');
-		*/
+		$connection = new PDO ('mysql: host=ip address; dbname=database','root','');
 		
 		$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		
